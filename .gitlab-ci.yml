@@ -1,0 +1,23 @@
+## A template test can assume a working Bastille installation and bootstrapped
+## releases. Naming scheme follows `major-minor-release`.
+
+bastille_template_test:
+  tags:
+    - bastille-template
+    - bastillebsd-template
+  script:
+    - doas bastille version
+    - doas bastille bootstrap "${CI_PROJECT_URL}"
+    - doas bastille create 11-3-release 11.3-RELEASE 10.17.89.113
+    - doas bastille create 12-0-release 12.0-RELEASE 10.17.89.120
+    - doas bastille create 12-1-release 12.1-RELEASE 10.17.89.121
+    - doas bastille start ALL
+    - doas bastille template ALL "${CI_PROJECT_NAMESPACE}"/"${CI_PROJECT_NAME}"
+    - doas bastille cmd ALL 'freebsd-version'
+    - doas bastille cmd ALL 'sysrc -ae'
+    - doas bastille cmd ALL 'ps -auxw'
+    - doas bastille pkg ALL 'audit -F'
+    - doas bastille stop ALL
+    - doas bastille destroy 11-3-release
+    - doas bastille destroy 12-0-release
+    - doas bastille destroy 12-1-release

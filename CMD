@@ -1,0 +1,1 @@
+/usr/local/bin/bash -c /usr/local/bin/build_pyarrow.sh

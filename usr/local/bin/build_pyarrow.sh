@@ -32,6 +32,7 @@ pip install six numpy pandas cython pytest hypothesis wheel
 mkdir ${ARROW_REPO}/cpp/build
 pushd ${ARROW_REPO}/cpp/build
 
+# GANDIVA -> llvm grpc
 cmake \
       -I${LOCALBASE}/include -L${LOCALBASE}/lib \
       -DCMAKE_BUILD_TYPE=${ARROW_BUILD_TYPE} \
@@ -40,12 +41,13 @@ cmake \
       -DARROW_FLIGHT=ON \
       -DARROW_GANDIVA=OFF \
       -DARROW_ORC=OFF \
+      -DARROW_S3=ON \
       -DARROW_WITH_BZ2=ON \
       -DARROW_WITH_ZLIB=ON \
       -DARROW_WITH_ZSTD=ON \
       -DARROW_WITH_LZ4=ON \
       -DARROW_WITH_SNAPPY=ON \
-      -DARROW_WITH_BROTLI=OFF \
+      -DARROW_WITH_BROTLI=ON \
       -DARROW_WITH_BACKTRACE=OFF \
       -DARROW_PARQUET=ON \
       -DARROW_PYTHON=ON \
@@ -63,10 +65,13 @@ export ARROW_LIB_DIR=${ARROW_HOME}/lib
 export ARROW_PYTHON_INCLUDE_DIR=${ARROW_HOME}/include/arrow/python
 export ARROW_PYTHON_LIB_DIR=${ARROW_HOME}/lib
 export PYARROW_WITH_FLIGHT=1
-export PYARROW_WITH_GANDIVA=0
+export PYARROW_WITH_GANDIVA=1
+export PYARROW_WITH_DATASET=1
+export PYARROW_WITH_HDFS=1
 export PYARROW_WITH_BACKTRACE=0
 export PYARROW_WITH_ORC=0
-export PYARROW_WITH_HDFS=0
+export PYARROW_WITH_HDFS=1
+export PYARROW_WITH_S3=1
 export PYARROW_WITH_PARQUET=1
 python setup.py build_ext --build-type=${ARROW_BUILD_TYPE} --bundle-arrow-cpp bdist_wheel
 mkdir -p ${HOME}/wheels

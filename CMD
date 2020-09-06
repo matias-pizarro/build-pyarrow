@@ -1,1 +1,1 @@
-/usr/local/bin/bash -c /usr/local/bin/build_pyarrow.sh
+pw user mod -s /usr/local/bin/bash -n root

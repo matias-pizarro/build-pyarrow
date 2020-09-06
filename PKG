@@ -1,1 +1,1 @@
-shells/bash devel/bison devel/cmake devel/gmake devel/pkgconf devel/git archivers/snappy archivers/brotli devel/boost-libs devel/thrift archivers/zstd devel/re2 devel/llvm70 dns/c-ares devel/ccache
+shells/bash devel/bison devel/cmake devel/gmake devel/pkgconf devel/git archivers/snappy archivers/brotli devel/boost-libs devel/thrift archivers/zstd devel/re2 devel/llvm10 dns/c-ares devel/ccache lang/python38 protobuf ocaml-opam ocaml-dune devel/rapidjson devel/gflags devel/grpc thrift-cpp devel/aws-sdk-cpp
